@@ -14,13 +14,20 @@ public class Kiosk {
             try{
                 categoryCheck = scanner.nextInt();
             } catch (Exception e) {
-                System.out.println("잘못된 입력입니다.");
+                System.out.println("잘못된 입력입니다.\n");
                 scanner.next();
                 continue;
             }
             if(categoryCheck == 0) {
                 System.out.println("\n프로그램을 종료합니다.");
                 break;
+            }
+            else if (categoryCheck <= menu.getCategorySize() && categoryCheck > 0) {
+                category = menu.getCategory(categoryCheck);
+            }
+            else {
+                System.out.println("잘못된 입력입니다.\n");
+                continue;
             }
 
             category = menu.getCategory(categoryCheck);

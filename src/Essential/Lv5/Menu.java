@@ -43,6 +43,10 @@ public class Menu {
         return category;
     }
 
+    public int getCategorySize() {
+        return categoryList.length;
+    }
+
     public void printMenu(String category) {
         System.out.println("\n[ " + category + " MENU ]");
         switch (category) {

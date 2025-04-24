@@ -1,14 +1,14 @@
-package Essential.Lv4;
+package Challenge.Lv1;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Menu {
-    String[] categoryList = {"Burgers", "Drinks", "Desserts"};
-    String category;
-    List<MenuItem> menuBurgers = new ArrayList<>();
-    List<MenuItem> menuDrinks = new ArrayList<>();
-    List<MenuItem> menuDesserts = new ArrayList<>();
+    private final String[] categoryList = {"Burgers", "Drinks", "Desserts"};
+    private String category;
+    private final List<MenuItem> menuBurgers = new ArrayList<>();
+    private final List<MenuItem> menuDrinks = new ArrayList<>();
+    private final List<MenuItem> menuDesserts = new ArrayList<>();
 
     public Menu(){
         MenuItem burger1 = new MenuItem("ShackBurger", 6.9, "토마토, 양상추, 쉑소스가 토핑된 치즈버거");
@@ -25,10 +25,11 @@ public class Menu {
 
         this.menuDrinks.add(drink1);
 
-        MenuItem dessert1 = new MenuItem("IceCream", 2.5, "아이스크림");
+        MenuItem dessert1 = new MenuItem("Icecream", 3.5, "아이스크림");
 
         this.menuDesserts.add(dessert1);
     }
+
     public void printCategory() {
         System.out.println("[ MAIN MENU ]");
         for(int j=0; j < categoryList.length; j++){
@@ -51,20 +52,20 @@ public class Menu {
         switch (category) {
             case "Burgers" -> {
                 for(int i = 0; i < menuBurgers.size(); i++){
-                    System.out.println((i+1) + ". " + menuBurgers.get(i).name + "\t| W "
-                            + menuBurgers.get(i).price + "\t|\t"+ menuBurgers.get(i).ex);
+                    System.out.println((i+1) + ". " + menuBurgers.get(i).getName() + "\t| W "
+                            + menuBurgers.get(i).getPrice() + "\t|\t"+ menuBurgers.get(i).getEx());
                 }
             }
             case "Drinks" -> {
                 for(int i = 0; i < menuDrinks.size(); i++){
-                    System.out.println((i+1) + ". " + menuDrinks.get(i).name + "\t| W "
-                            + menuDrinks.get(i).price + "\t|\t"+ menuDrinks.get(i).ex);
+                    System.out.println((i+1) + ". " + menuDrinks.get(i).getName() + "\t| W "
+                            + menuDrinks.get(i).getPrice() + "\t|\t"+ menuDrinks.get(i).getEx());
                 }
             }
             case "Desserts" -> {
                 for(int i = 0; i < menuDesserts.size(); i++){
-                    System.out.println((i+1) + ". " + menuDesserts.get(i).name + "\t| W "
-                            + menuDesserts.get(i).price + "\t|\t"+ menuDesserts.get(i).ex);
+                    System.out.println((i+1) + ". " + menuDesserts.get(i).getName() + "\t| W "
+                            + menuDesserts.get(i).getPrice() + "\t|\t"+ menuDesserts.get(i).getEx());
                 }
             }
         }

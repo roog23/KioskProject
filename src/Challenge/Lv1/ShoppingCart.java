@@ -1,0 +1,53 @@
+package Challenge.Lv1;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ShoppingCart {
+    private final List<MenuItem> cart = new ArrayList<>();
+    private double total;
+
+    public int getCartSize() {
+        return cart.size();
+    }
+
+    public void cartAddCheck(MenuItem shopping) {
+        System.out.println(shopping.getName()+"\t| W "+shopping.getPrice()+"\t|\t"+ shopping.getEx());
+        System.out.println("위 메뉴를 장바구니에 추가하시겠습니까?");
+        System.out.println("1. 확인 \t2. 취소");
+    }
+
+    public void setCart(MenuItem shopping) {
+        cart.add(shopping);
+        System.out.println(shopping.getName()+"이 장바구니에 추가되었습니다.\n");
+    }
+
+    public void printOrder(int size) {
+        System.out.println("\n[ ORDER MENU ]");
+        System.out.println((size+1) + ". Orders \t|장바구니를 확인 후 주문합니다.");
+        System.out.println((size+2) + ". Cancel \t|진행중인 주문을 취소합니다.");
+    }
+
+    public void Order(int order){
+        if(order == 1) {
+            total = 0;
+            System.out.println("아래와 같이 주문 하시겠습니까?\n");
+            System.out.println("[ Orders ]");
+            for(MenuItem menu : cart){
+                System.out.println(menu.getName()+"\t| W "+menu.getPrice()+"\t|\t"+ menu.getEx());
+                total += menu.getPrice();
+            }
+            System.out.println("\n[ Total ]");
+            System.out.println("W " + total);
+            System.out.println("\n1. 주문 \t 2.메뉴판");
+        }
+        if(order == 2) {
+            cart.clear();
+            System.out.println("모든 주문이 취소되었습니다.\n");
+        }
+    }
+
+    public double getTotal() {
+        return total;
+    }
+}

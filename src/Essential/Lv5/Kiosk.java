@@ -9,21 +9,28 @@ public class Kiosk {
     public void start() {
 
         while(true){
+            String category;
             menu.printCategory();
             int categoryCheck;
             try{
                 categoryCheck = scanner.nextInt();
             } catch (Exception e) {
-                System.out.println("잘못된 입력입니다.");
+                System.out.println("잘못된 입력입니다.\n");
                 scanner.next();
                 continue;
             }
+
             if(categoryCheck == 0) {
                 System.out.println("\n프로그램을 종료합니다.");
                 break;
             }
-
-            String category = menu.getCategory(categoryCheck);
+            else if (categoryCheck <= menu.getCategorySize() && categoryCheck > 0) {
+                category = menu.getCategory(categoryCheck);
+            }
+            else {
+                System.out.println("잘못된 입력입니다.\n");
+                continue;
+            }
 
             while(true){
                 menu.printMenu(category);
