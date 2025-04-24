@@ -1,10 +1,10 @@
 package Challenge.Lv1;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ShoppingCart {
-    private final List<MenuItem> cart = new ArrayList<>();
+    private final Map<MenuItem,Integer> cart = new HashMap<>();
     private double total;
 
     public int getCartSize() {
@@ -12,13 +12,13 @@ public class ShoppingCart {
     }
 
     public void cartAddCheck(MenuItem shopping) {
-        System.out.println(shopping.getName()+"\t| W "+shopping.getPrice()+"\t|\t"+ shopping.getEx());
+        System.out.println(shopping.getName()+"\t+ | W "+shopping.getPrice()+"\t|\t"+ shopping.getEx());
         System.out.println("위 메뉴를 장바구니에 추가하시겠습니까?");
         System.out.println("1. 확인 \t2. 취소");
     }
 
     public void setCart(MenuItem shopping) {
-        cart.add(shopping);
+        cart.put(shopping,cart.getOrDefault(shopping,0)+1);
         System.out.println(shopping.getName()+"이 장바구니에 추가되었습니다.\n");
     }
 
@@ -33,18 +33,22 @@ public class ShoppingCart {
             total = 0;
             System.out.println("아래와 같이 주문 하시겠습니까?\n");
             System.out.println("[ Orders ]");
-            for(MenuItem menu : cart){
-                System.out.println(menu.getName()+"\t| W "+menu.getPrice()+"\t|\t"+ menu.getEx());
-                total += menu.getPrice();
+            for(MenuItem menu : cart.keySet()) {
+                System.out.println("- "+menu.getName()+"\t| W "+menu.getPrice()+"\t|\t"+ cart.get(menu));
+                total += (menu.getPrice() * cart.get(menu));
             }
             System.out.println("\n[ Total ]");
             System.out.println("W " + total);
             System.out.println("\n1. 주문 \t 2.메뉴판");
         }
         if(order == 2) {
-            cart.clear();
-            System.out.println("모든 주문이 취소되었습니다.\n");
+            System.out.println("모든 주문을 취소하시겠습니까?");
+            System.out.println("1. 모든 주문 취소 \t 2.되돌리기");
         }
+    }
+
+    public void cartClear() {
+        cart.clear();
     }
 
     public double getTotal() {

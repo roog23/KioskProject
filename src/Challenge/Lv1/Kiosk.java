@@ -35,11 +35,18 @@ public class Kiosk {
                     categoryCheck > menu.getCategorySize() &&
                     categoryCheck <= menu.getCategorySize() + 2) {
                 cart.Order(categoryCheck- menu.getCategorySize());
-                if(categoryCheck- menu.getCategorySize()==1){
+                if(categoryCheck- menu.getCategorySize()==1) {
                     String calculate = scanner.next();
                     if(calculate.equals("1")){
-                        System.out.println("\n주문이 완료되었습니다. 금액은 W " + cart.getTotal()+"입니다.");
-                        break;
+                        System.out.println("\n주문이 완료되었습니다. 금액은 W " + cart.getTotal()+"입니다.\n");
+                        cart.cartClear();
+                    }
+                }
+                else if(categoryCheck- menu.getCategorySize()==2) {
+                    String calculate = scanner.next();
+                    if(calculate.equals("1")){
+                        System.out.println("모든 주문이 취소되었습니다.");
+                        cart.cartClear();
                     }
                 }
             }
