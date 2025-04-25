@@ -1,10 +1,10 @@
 package Challenge.Lv2;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class ShoppingCart {
     private final Map<MenuItem,Integer> cart = new HashMap<>();
+    private final List<MenuItem> cartList = new ArrayList<>();
     private double total;
 
     public int getCartSize() {
@@ -19,6 +19,7 @@ public class ShoppingCart {
 
     public void setCart(MenuItem shopping) {
         cart.put(shopping,cart.getOrDefault(shopping,0)+1);
+        if(cart.get(shopping)==1) cartList.add(shopping);
         System.out.println(shopping.getName()+"이 장바구니에 추가되었습니다.\n");
     }
 
@@ -26,6 +27,7 @@ public class ShoppingCart {
         System.out.println("\n[ ORDER MENU ]");
         System.out.println((size+1) + ". Orders \t|장바구니를 확인 후 주문합니다.");
         System.out.println((size+2) + ". Cancel \t|진행중인 주문을 취소합니다.");
+        System.out.println((size+3) + ". CartList |장바구니 리스트를 확인합니다.");
     }
 
     public void Order(int order){
@@ -45,7 +47,12 @@ public class ShoppingCart {
             System.out.println("모든 주문을 취소하시겠습니까?");
             System.out.println("1. 모든 주문 취소 \t 2.되돌리기");
         }
-
+        else if(order == 3) {
+            System.out.println("\n[ Cart List ]");
+            cartList.forEach(List -> System.out.println((cartList.indexOf(List)+1)+". "+List.getName()+"\t| W "+List.getPrice()+"\t|\t"+ cart.get(List)));
+            System.out.println("주문을 취소하시겠습니까?");
+            System.out.println("1. 주문 취소 \t 2.되돌리기");
+        }
     }
 
     public void cartClear() {
@@ -54,5 +61,19 @@ public class ShoppingCart {
 
     public double getTotal() {
         return total;
+    }
+
+    public void cartRemove(int number){
+        String removeMenu = cartList.get(number-1).getName();
+        System.out.println(removeMenu);
+        cart.remove(cartList.get(number-1));
+
+        //cartList.remove(number-1);
+
+        cartList.stream()
+                .filter(menu -> menu.getName().equals(removeMenu))
+                .toList()
+                .forEach(menu -> cartList.remove(menu));
+
     }
 }

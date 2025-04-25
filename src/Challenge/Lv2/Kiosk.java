@@ -66,6 +66,29 @@ public class Kiosk {
                         cart.cartClear();
                     }
                 }
+                else if(categoryCheck- menu.getCategorySize()==3) {
+                    String calculate = scanner.next();
+                    if(calculate.equals("1")){
+                        while(true){
+                            int removeMenu;
+                            System.out.println("취소할 메뉴를 골라주세요.");
+                            try{
+                                removeMenu = scanner.nextInt();
+                            }catch (Exception e){
+                                System.out.println("잘못된 입력입니다.");
+                                scanner.next();
+                                continue;
+                            }
+                            if(removeMenu > cart.getCartSize()){
+                                System.out.println("잘못된 입력입니다.");
+                                continue;
+                            }
+                            cart.cartRemove(removeMenu);
+                            System.out.println("주문이 취소되었습니다.\n");
+                            break;
+                        }
+                    }
+                }
             }
             else {
                 System.out.println("잘못된 입력입니다.\n");
