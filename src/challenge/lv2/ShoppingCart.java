@@ -4,7 +4,6 @@ import java.util.*;
 
 public class ShoppingCart {
     private final Map<MenuItem,Integer> cart = new HashMap<>();
-    private final List<MenuItem> cartList = new ArrayList<>();
     private double total;
 
     public int getCartSize() {
@@ -19,8 +18,6 @@ public class ShoppingCart {
 
     public void setCart(MenuItem shopping) {
         cart.put(shopping,cart.getOrDefault(shopping,0)+1);
-        if(cart.get(shopping)==1)
-            cartList.add(shopping);
         System.out.println(shopping.getName()+"이 장바구니에 추가되었습니다.\n");
     }
 
@@ -50,7 +47,8 @@ public class ShoppingCart {
         }
         else if(order == 3) {
             System.out.println("\n[ Cart List ]");
-            cartList.forEach(List -> System.out.println((cartList.indexOf(List)+1)+". "+List.getName()+"\t| W "+List.getPrice()+"\t|\t"+ cart.get(List)));
+            int[] number = {1};
+            cart.forEach((menu, quantity) -> System.out.println(number[0]++ + ". "+menu.getName()+"\t| W "+menu.getPrice()+"\t|\t"+ quantity));
             System.out.println("주문을 취소하시겠습니까?");
             System.out.println("1. 주문 취소 \t 2.되돌리기");
         }
@@ -58,7 +56,6 @@ public class ShoppingCart {
 
     public void cartClear() {
         cart.clear();
-        cartList.clear();
     }
 
     public double getTotal() {
@@ -66,13 +63,13 @@ public class ShoppingCart {
     }
 
     public void cartRemove(int number){
-        String removeMenu = cartList.get(number-1).getName();
-        System.out.println(removeMenu);
-        cart.remove(cartList.get(number-1));
+        int[] check = {1};
+        List<MenuItem> menuItem = cart.entrySet().stream()
+                .filter(a->check[0]++ == number)
+                .map(menu -> menu.getKey())
+                .toList();
+        System.out.println(menuItem.getFirst().getName());
 
-        cartList.stream()
-                .filter(menu -> menu.getName().equals(removeMenu))
-                .toList()
-                .forEach(menu -> cartList.remove(menu));
+        cart.remove(menuItem.getFirst());
     }
 }

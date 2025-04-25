@@ -79,7 +79,7 @@ public class Kiosk {
                                 scanner.next();
                                 continue;
                             }
-                            if(removeMenu > cart.getCartSize()){
+                            if(removeMenu > cart.getCartSize() || removeMenu < 1){
                                 System.out.println("잘못된 입력입니다.");
                                 continue;
                             }
