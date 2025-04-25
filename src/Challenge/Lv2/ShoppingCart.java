@@ -1,4 +1,4 @@
-package Challenge.Lv1;
+package Challenge.Lv2;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -41,10 +41,11 @@ public class ShoppingCart {
             System.out.println("W " + total);
             System.out.println("\n1. 주문 \t 2.메뉴판");
         }
-        if(order == 2) {
+        else if(order == 2) {
             System.out.println("모든 주문을 취소하시겠습니까?");
             System.out.println("1. 모든 주문 취소 \t 2.되돌리기");
         }
+
     }
 
     public void cartClear() {

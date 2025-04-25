@@ -1,4 +1,4 @@
-package Challenge.Lv1;
+package Challenge.Lv2;
 
 import java.util.Scanner;
 
@@ -33,13 +33,30 @@ public class Kiosk {
             }
             else if (cart.getCartSize() != 0 &&
                     categoryCheck > menu.getCategorySize() &&
-                    categoryCheck <= menu.getCategorySize() + 2) {
+                    categoryCheck <= menu.getCategorySize() + 3) {
                 cart.Order(categoryCheck- menu.getCategorySize());
                 if(categoryCheck- menu.getCategorySize()==1) {
                     String calculate = scanner.next();
                     if(calculate.equals("1")){
-                        System.out.println("\n주문이 완료되었습니다. 금액은 W " + cart.getTotal()+"입니다.\n");
-                        cart.cartClear();
+                        while(true) {
+                            int saleInfo;
+                            System.out.println("\n할인 정보를 입력해주세요.");
+                            SaleInfo.printSaleInfo();
+                            try{
+                                saleInfo = scanner.nextInt();
+                            }catch (Exception e){
+                                System.out.println("잘못된 입력입니다.");
+                                scanner.next();
+                                continue;
+                            }
+                            if(saleInfo > 4 || saleInfo < 1){
+                                System.out.println("잘못된 입력입니다.");
+                                continue;
+                            }
+                            System.out.println("\n주문이 완료되었습니다. 금액은 W " + SaleInfo.resultTotal(saleInfo, cart.getTotal()) + " 입니다.\n");
+                            cart.cartClear();
+                            break;
+                        }
                     }
                 }
                 else if(categoryCheck- menu.getCategorySize()==2) {
