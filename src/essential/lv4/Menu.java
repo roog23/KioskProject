@@ -10,6 +10,7 @@ public class Menu {
     List<MenuItem> menuDrinks = new ArrayList<>();
     List<MenuItem> menuDesserts = new ArrayList<>();
 
+    //메뉴를 생성하고 메뉴의 카테고리 리스트에 메뉴를 등록하는 기능을 합니다.
     public Menu(){
         MenuItem burger1 = new MenuItem("ShackBurger", 6.9, "토마토, 양상추, 쉑소스가 토핑된 치즈버거");
         MenuItem burger2 = new MenuItem("SmokeShack", 8.9, "베이컨, 체리 페퍼에 쉑소스가 토핑된 치즈버거");
@@ -29,6 +30,8 @@ public class Menu {
 
         this.menuDesserts.add(dessert1);
     }
+
+    //메뉴의 카테고리를 출력해주는 기능입니다.
     public void printCategory() {
         System.out.println("[ MAIN MENU ]");
         for(int j=0; j < categoryList.length; j++){
@@ -37,16 +40,18 @@ public class Menu {
         System.out.println("0. 종료\t\t|종료");
     }
 
-    public String getCategory(int num) {
+    //카테고리를 설정하는 기능입니다.
+    public void setCategory(int num) {
         category = categoryList[num-1];
-        return category;
     }
 
+    //카테고리의 크기를 반환해주는 기능입니다.
     public int getCategorySize() {
         return categoryList.length;
     }
 
-    public void printMenu(String category) {
+    //카테고리의 메뉴를 출력해주는 기능입니다.
+    public void printMenu() {
         System.out.println("\n[ " + category + " MENU ]");
         switch (category) {
             case "Burgers" -> {
@@ -72,6 +77,7 @@ public class Menu {
 
     }
 
+    //저장된 메뉴 리스트의 크기를 반환하는 기능입니다.
     public int getMenuSize() {
         switch (category) {
             case "Burgers" -> {
@@ -87,6 +93,7 @@ public class Menu {
         return 0;
     }
 
+    //선택한 메뉴를 반환하는 기능입니다.
     public MenuItem getMenu(int i) {
         switch (category) {
             case "Burgers" -> {
